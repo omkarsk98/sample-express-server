@@ -1,4 +1,4 @@
-const { runSql } = require("../utils")
+const { runSql } = require("../utils/runSql")
 
 const checkUserExist = function (conn, body) {
         let query = "select * from users where username=? or phone=?";

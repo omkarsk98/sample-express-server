@@ -2,20 +2,24 @@ const bodyParser = require("body-parser");
 const { app } = require('./app');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const { conn } = require("./connection");
+const { mysqlConn } = require("./utils/mysqlConnection");
+const mongo = require("./utils/mongoConnection");
 const { getUser } = require("./modules/getUser");
 const { signUp } = require("./modules/signUp");
 const { getUserDashboard } = require("./modules/getUserDashboard");
 const { authenticateUser } = require("./auth/authorization");
 const { getAllPhones } = require("./modules/getAllPhones");
 const { getAllUsernames } = require("./modules/getAllUsernames");
-const { redisClient } = require("./redisConnection");
+
+mongo.connectToServer(function (err, client) {
+    if (err) console.log(err);
+});
 
 app.post("/sign-up", function (req, res) {
     let { body } = req;
-    return signUp(conn, body)
+    return signUp(mysqlConn, body)
         .then(result => {
-            res.json({ status: 200, msg: result })
+            res.json({ status: 200, token: result })
         })
         .catch(error => {
             console.log(error)
@@ -25,7 +29,7 @@ app.post("/sign-up", function (req, res) {
 
 app.post("/sign-in", function (req, res) {
     let { body } = req;
-    return getUser(conn, body)
+    return getUser(mysqlConn, body)
         .then(result => {
             res.json({ status: 200, token: result });
         })
@@ -39,9 +43,9 @@ app.get("/", function (req, res) {
     res.send("Hello World")
 })
 
-app.get("/dashboard", function (req, res) {
+app.get("/dashboard", authenticateUser, function (req, res) {
     let { authorization } = req.headers;
-    return getUserDashboard(conn, authorization.split(" ")[1])
+    return getUserDashboard(mysqlConn, authorization.split(" ")[1])
         .then(result => {
             res.json({ status: 200, data: result })
         })
@@ -52,7 +56,7 @@ app.get("/dashboard", function (req, res) {
 
 app.get("/phones", authenticateUser, function (req, res) {
     // get all phones
-    return getAllPhones(conn)
+    return getAllPhones(mysqlConn)
         .then(result => {
             res.json({ status: 200, data: result });
         })
@@ -63,7 +67,7 @@ app.get("/phones", authenticateUser, function (req, res) {
 
 app.get("/usernames", authenticateUser, function (req, res) {
     // get all usernames
-    return getAllUsernames(conn)
+    return getAllUsernames(mysqlConn)
         .then(result => {
             res.json({ status: 200, data: result });
         })
@@ -76,8 +80,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.send(err.message);
 });
-
-app.set('jwtTokenSecret', 'jwtSecret');
 
 const PORT = 3010;
 app.listen(PORT, () => {

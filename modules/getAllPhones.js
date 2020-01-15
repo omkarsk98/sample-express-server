@@ -1,4 +1,4 @@
-const { runSql } = require("../utils");
+const { runSql } = require("../utils/runSql")
 
 const getAllPhones = function (conn) {
     let query = "select phone from users;";

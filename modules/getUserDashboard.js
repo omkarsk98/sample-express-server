@@ -1,11 +1,11 @@
-const { runSql } = require("../utils");
+const { runSql } = require("../utils/runSql")
 
 const getUserDashboard = function (conn, token) {
     let query = "select * from users where phone=?;";
     return runSql(conn, query, [token])
         .then(result => {
             if (result.length === 0)
-                throw "unauthentic"
+                throw "No data found"
             return result[0]
         })
 }
