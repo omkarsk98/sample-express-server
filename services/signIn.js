@@ -2,10 +2,7 @@ const { mysqlConn } = require("../utils/mysqlConnection");
 const { getUser } = require("../modules/getUser");
 
 const signInService = function (body) {
-    return getUser(mysqlConn, body)
-        .then(result => {
-            return result
-        })
+    return getUser(mysqlConn, body);
 }
 
 exports.signInService = signInService;
