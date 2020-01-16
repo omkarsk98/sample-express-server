@@ -1,4 +1,4 @@
-const { mysqlConn } = require("../utils/mysqlConnection");
+const { mysqlConn } = require("../connections/mysqlConnection");
 const { signUp } = require("../modules/signUp")
 
 const signUpService = function (body) {

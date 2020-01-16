@@ -1,4 +1,4 @@
-const { mysqlConn } = require("../utils/mysqlConnection");
+const { mysqlConn } = require("../connections/mysqlConnection");
 const { getAllPhones } = require("../modules/getAllPhones");
 const { getAllUsernames } = require("../modules/getAllUsernames");
 const { getUserDashboard } = require("../modules/getUserDashboard");

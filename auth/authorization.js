@@ -1,4 +1,4 @@
-const { redisGetAsync } = require("../redisConnection");
+const { redisGetAsync } = require("../connections/redisConnection");
 const jwt = require('jwt-simple');
 const config = require('../config')
 

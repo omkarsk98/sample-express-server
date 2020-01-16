@@ -1,6 +1,6 @@
 const jwt = require("jwt-simple")
 const config = require("../config");
-const { redisClient } = require("../redisConnection");
+const { redisClient } = require("../connections/redisConnection");
 const moment = require("moment")
 
 const getJWT = function (data) {
