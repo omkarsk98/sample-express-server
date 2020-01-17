@@ -7,7 +7,6 @@ const checkUserExist = function (conn, body) {
                 if (res.length === 0)
                     return true;
                 if (res[0].username === body.username){
-                    console.log(res[0].username,body.username)
                     throw "Username already exists";
                 }
                 throw "Phone already exists";

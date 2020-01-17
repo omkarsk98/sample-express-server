@@ -1,1 +1,2 @@
-node_modules/
+auth-server/node_modules/
+services-server/node_modules
