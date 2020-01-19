@@ -6,10 +6,10 @@ const signIn = function (mysqlConn, redisClient, eventEmitter, data, constants, 
     return runSql(mysqlConn, query, [data.username, data.password])
         .then((res) => {
             if (res.length === 0) {
-                // eventEmitter.emit("CreateSignInLog", conn, body.username, body.password, false);
+                eventEmitter.emit("CreateSignInLog", mysqlConn, data.username, data.password, false);
                 throw "user not found";
             }
-            // eventEmitter.emit("CreateSignInLog", conn, body.username, body.password, true);
+            eventEmitter.emit("CreateSignInLog", mysqlConn, data.username, data.password, true);
             var token = getJWT(redisClient, res[0].phone, constants, jwt, moment)
             return token;
         })
