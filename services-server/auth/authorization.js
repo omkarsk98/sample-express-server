@@ -11,9 +11,10 @@ const authenticateUser = function (req, res, next) {
         return next(err);
     }
     try {
+
         var key = jwt.decode(token, config.jwtSecret)
     } catch (error) {
-        console.log("Decode error", error)
+        // console.log("Decode error", error)
         return next(err);
     }
     return redisGetAsync(key.iss)
