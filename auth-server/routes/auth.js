@@ -24,7 +24,7 @@ router.post('/sign-up', function (req, res) {
         })
 })
 
-router.post('/sign-out', authenticateUser, function (req, res) {
+router.get('/sign-out', authenticateUser, function (req, res) {
     const { authorization } = req.headers;
     return signOutService(authorization.split(" ")[1])
         .then(result => {
