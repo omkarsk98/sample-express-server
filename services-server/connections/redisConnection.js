@@ -8,10 +8,6 @@ redisClient.on('error', (err) => {
     console.log('Redis error: ', err);
 });
 
-redisClient.flushdb(function (err, succeeded) {
-    console.log(succeeded); // will be true if successfull
-});
-
 const redisGetAsync = function (key) {
     return new Promise((resolve, reject) => {
         redisClient.get(key, function (error, result) {

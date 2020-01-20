@@ -6,6 +6,7 @@ const mongo = require("./connections/mongoConnection");
 
 const getUserDetails = require("./routes/getUserDetails");
 const saveToFile = require("./routes/saveToFile");
+const playMp3 = require("./routes/playMp3")
 
 mongo.connectToServer(function (err, client) {
     if (err) console.log(err);
@@ -13,6 +14,7 @@ mongo.connectToServer(function (err, client) {
 
 app.use("/", getUserDetails)
 app.use('/save-to-file', saveToFile)
+app.use("/play-mp3",playMp3);
 
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
