@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const config = require('../config/config')
+const config = require('../express-server-config/config');
 const authRouter = require("./routes/auth")
 
 app.use("/", authRouter)

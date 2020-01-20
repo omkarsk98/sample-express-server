@@ -1,0 +1,3 @@
+[submodule "express-server-config"]
+	path = express-server-config
+	url = https://github.com/omkarsk98/express-server-config.git

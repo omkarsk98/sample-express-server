@@ -1,5 +1,5 @@
 const jwt = require("jwt-simple")
-const { REDIS_TOKEN_EXPIRY, JWT_SECRET } = require("../../config/config");
+const { REDIS_TOKEN_EXPIRY, JWT_SECRET } = require("../../../express-server-config/config");
 const { redisClient } = require("../connections/redisConnection");
 const moment = require("moment")
 

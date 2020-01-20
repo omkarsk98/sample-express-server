@@ -1,6 +1,6 @@
 const { redisGetAsync } = require("../connections/redisConnection");
 const jwt = require('jwt-simple');
-const config = require('../../config/config')
+const config = require('../../express-server-config/config')
 
 const authenticateUser = function (req, res, next) {
     const err = new Error("Not authorized! Go back!");

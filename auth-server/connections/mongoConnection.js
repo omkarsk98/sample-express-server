@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const { MONGODB_PORT } = require("../../config/config")
+const { MONGODB_PORT } = require("../../../express-server-config/config")
 const url = `mongodb://localhost:${MONGODB_PORT}`;
 
 var _db;

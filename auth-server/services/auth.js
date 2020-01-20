@@ -4,7 +4,7 @@ const { eventEmitter } = require("../connections/eventEmitter")
 const { signIn } = require("../modules/signIn");
 const { signUp } = require("../modules/signUp");
 const { signOut } = require("../modules/signOut")
-const config = require('../../config/config');
+const config = require('../../express-server-config/config');
 const moment = require('moment');
 const jwt = require('jwt-simple');
 
