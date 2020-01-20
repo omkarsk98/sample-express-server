@@ -1,6 +1,6 @@
 const { redisGetAsync } = require("../connections/redisConnection");
 const jwt = require('jwt-simple');
-const config = require('../config')
+const config = require('../../config/config')
 
 const authenticateUser = function (req, res, next) {
     const err = new Error("Not authorized! Go back!");
@@ -11,7 +11,7 @@ const authenticateUser = function (req, res, next) {
         return next(err);
     }
     try {
-        var key = jwt.decode(token, config.jwtSecret)
+        var key = jwt.decode(token, config.JWT_SECRET)
     } catch (error) {
         console.log("Decode error", error)
         return next(err);

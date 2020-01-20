@@ -1,7 +1,7 @@
 const destroyJWT = function (redisClient, token, constants, jwt) {
     return new Promise((resolve, reject) => {
         try {
-            var key = jwt.decode(token, constants.jwtSecret)
+            var key = jwt.decode(token, constants.JWT_SECRET)
         } catch (error) {
             reject(error);
         }
